@@ -12,7 +12,8 @@ const getUserCart = asyncHandler(async (req, res) => {
   const cart = await Cart.findOne({ user: req.user._id }).populate("items.book");
 
   if (!cart) {
-    return res.status(404).json({ message: "Cart not found" });
+    // return res.status(404).json({ message: "Cart not found" });
+     return res.json({ user: req.user._id, items: [] });
   }
 
   res.json(cart);
